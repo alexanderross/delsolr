@@ -31,12 +31,13 @@ module DelSolr
 
       # Rreturns the "raw" ruby hash that is returned by the solr ruby response writer.  This is mostly for debugging purposes
       def raw_response
+        raise "Response is nil - Solr server may be unavailable." unless success?
         @raw_response
       end
 
       # Did we get some kind of valid response back from solr?
       def success?
-        !raw_response.nil?
+        !@raw_response.nil?
       end
       
       # Returns the total number of matches
